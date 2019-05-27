@@ -5,3 +5,13 @@
 
 ## Description
 This simple game will show you some random flags and ask to choose which one belongs to a particular country.
+
+## Programming To-Do List
+- [x] **Add the flags buttons** : On an `ViewController` with `NavigationBar` add three buttons that are going to be the flags.
+- [x] **Add the flag assets** : Add the assets for the flags.
+
+## Demo
+### features/design-the-layout
+| Screenshot 01 |
+| ------------- |
+| ![screenshot01](.screenshots/screenshot01.png) |
