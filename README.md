@@ -9,9 +9,15 @@ This simple game will show you some random flags and ask to choose which one bel
 ## Programming To-Do List
 - [x] **Add the flags buttons** : On an `ViewController` with `NavigationBar` add three buttons that are going to be the flags.
 - [x] **Add the flag assets** : Add the assets for the flags.
+- [x] **Add style to the buttons** : Using `CALayer` change the button styles with a border width and color.
 
 ## Demo
 ### features/design-the-layout
 | Screenshot 01 |
 | ------------- |
 | ![screenshot01](.screenshots/screenshot01.png) |
+
+### features/make-the-basic-game-work
+| Screenshot 02 |
+| ------------- |
+| ![screenshot02](.screenshots/screenshot02.png) |
