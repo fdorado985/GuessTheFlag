@@ -12,6 +12,8 @@ This simple game will show you some random flags and ask to choose which one bel
 - [x] **Add style to the buttons** : Using `CALayer` change the button styles with a border width and color.
 - [x] **Pick 3 Random Numbers** : Pick 3 random numbers to use them to pick a flag from the array.
 - [x] **Shuffle** : Shuffle up the order of the array, to then pick the first three items.
+- [x] **Actions** : Create the actions to let the button interact to choose the correct answer.
+- [x] **Show Alert** : Show an alert to let the user know if the answer is correct or not and show the score.
 
 ## Demo
 ### features/design-the-layout
@@ -28,3 +30,8 @@ This simple game will show you some random flags and ask to choose which one bel
 | Screenshot 03 |
 | ------------- |
 | ![screenshot03](.screenshots/screenshot03.png) |
+
+### features/from-outlets-to-actions
+| Screenshot 04 | Screenshot 05 |
+| ------------- | ------------- |
+| ![screenshot04](.screenshots/screenshot04.png) | ![screenshot05](.screenshots/screenshot05.png) |
