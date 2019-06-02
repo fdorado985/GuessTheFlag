@@ -20,6 +20,9 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dts-nN-awv">
                                 <rect key="frame" x="60" y="100" width="200" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Dts-nN-awv" secondAttribute="height" multiplier="2:1" id="uOP-BU-BWv"/>
+                                </constraints>
                                 <state key="normal" image="us"/>
                                 <connections>
                                     <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OVa-vM-Ow5"/>
@@ -27,6 +30,9 @@
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u0F-lw-wmI">
                                 <rect key="frame" x="60" y="230" width="200" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="u0F-lw-wmI" secondAttribute="height" multiplier="2:1" id="st2-Qr-XvM"/>
+                                </constraints>
                                 <state key="normal" image="us"/>
                                 <connections>
                                     <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FIB-oc-hnw"/>
@@ -34,6 +40,9 @@
                             </button>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gHZ-cy-MU0">
                                 <rect key="frame" x="60" y="360" width="200" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="gHZ-cy-MU0" secondAttribute="height" multiplier="2:1" id="6qh-1F-jX7"/>
+                                </constraints>
                                 <state key="normal" image="us"/>
                                 <connections>
                                     <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Box-JK-Dbh"/>
@@ -43,6 +52,9 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="gHZ-cy-MU0" firstAttribute="centerX" secondItem="u0F-lw-wmI" secondAttribute="centerX" id="B0f-5V-4bD"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="gHZ-cy-MU0" secondAttribute="bottom" constant="20" id="FLY-0i-7SI"/>
+                            <constraint firstItem="u0F-lw-wmI" firstAttribute="height" secondItem="Dts-nN-awv" secondAttribute="height" id="JEb-Hr-fyh"/>
+                            <constraint firstItem="gHZ-cy-MU0" firstAttribute="height" secondItem="u0F-lw-wmI" secondAttribute="height" id="MO5-B8-aYz"/>
                             <constraint firstItem="u0F-lw-wmI" firstAttribute="centerX" secondItem="Dts-nN-awv" secondAttribute="centerX" id="aUZ-lD-jYf"/>
                             <constraint firstItem="u0F-lw-wmI" firstAttribute="top" secondItem="Dts-nN-awv" secondAttribute="bottom" constant="30" id="e18-uR-SDC"/>
                             <constraint firstItem="Dts-nN-awv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="36" id="gTm-E8-dXI"/>
