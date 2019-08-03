@@ -35,3 +35,8 @@ This simple game will show you some random flags and ask to choose which one bel
 | Screenshot 04 | Screenshot 05 |
 | ------------- | ------------- |
 | ![screenshot04](.screenshots/screenshot04.png) | ![screenshot05](.screenshots/screenshot05.png) |
+
+### features/userdefaults
+| Screenshot 06 |
+| ------------- |
+| ![screenshot06](.screenshots/screenshot06.gif) |
