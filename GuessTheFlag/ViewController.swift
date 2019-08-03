@@ -20,6 +20,7 @@ class ViewController: UIViewController {
 
   var countries = [String]()
   var score = 0
+  var highestScore = 0
   var correctAnswer = 0
 
   // MARK: - View cycle
@@ -40,6 +41,10 @@ class ViewController: UIViewController {
     button2.layer.borderColor = UIColor.lightGray.cgColor
     button3.layer.borderColor = UIColor.lightGray.cgColor
 
+    let defaults = UserDefaults.standard
+    highestScore = defaults.integer(forKey: "highestScore")
+    defaults.synchronize()
+
     askQuestion()
   }
 
@@ -56,7 +61,19 @@ class ViewController: UIViewController {
       score -= 1
     }
 
-    let ac = UIAlertController(title: title, message: "Your score is \(score).", preferredStyle: .alert)
+    let ac: UIAlertController
+
+    if score > highestScore {
+      highestScore = score
+      let defaults = UserDefaults.standard
+      defaults.set(highestScore, forKey: "highestScore")
+      defaults.synchronize()
+
+      ac = UIAlertController(title: title, message: "You beat the highest score.\nYour score is \(score).", preferredStyle: .alert)
+    } else {
+      ac = UIAlertController(title: title, message: "Your score is \(score).", preferredStyle: .alert)
+    }
+
     ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
     present(ac, animated: true)
   }
