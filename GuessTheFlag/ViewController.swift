@@ -75,7 +75,13 @@ class ViewController: UIViewController {
     }
 
     ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
-    present(ac, animated: true)
+
+    UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: [], animations: {
+      sender.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+    }) { [weak self] finished in
+      self?.present(ac, animated: true)
+    }
+
   }
 
   // MARK: - Public Methods
@@ -86,6 +92,12 @@ class ViewController: UIViewController {
     button1.setImage(UIImage(named: countries[0]), for: .normal)
     button2.setImage(UIImage(named: countries[1]), for: .normal)
     button3.setImage(UIImage(named: countries[2]), for: .normal)
+
+    UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: [], animations: { [weak self] in
+      self?.button1.transform = .identity
+      self?.button2.transform = .identity
+      self?.button3.transform = .identity
+    }, completion: nil)
 
     correctAnswer = Int.random(in: 0...2)
     title = countries[correctAnswer].uppercased()

@@ -40,3 +40,8 @@ This simple game will show you some random flags and ask to choose which one bel
 | Screenshot 06 |
 | ------------- |
 | ![screenshot06](.screenshots/screenshot06.gif) |
+
+### features/animation-challenge
+| Screenshot 07 |
+| ------------- |
+| ![screenshot07.gif](.screenshots/screenshot07.gif) |
