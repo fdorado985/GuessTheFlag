@@ -45,3 +45,12 @@ This simple game will show you some random flags and ask to choose which one bel
 | Screenshot 07 |
 | ------------- |
 | ![screenshot07.gif](.screenshots/screenshot07.gif) |
+
+### features/challenge-local-notifications
+| Screenshot 08 | Screenshot 09 |
+| ------------- | ------------- |
+| ![screenshot08](.screenshots/screenshot08.png) | ![screenshot09](.screenshots/screenshot09.png) |
+
+| Screenshot 10 | Screenshot 11 |
+| ------------- | ------------- |
+| ![screenshot10](.screenshots/screenshot10.png) | ![screenshot11](.screenshots/screenshot11.png) |
