@@ -19,14 +19,37 @@ class ViewController: UIViewController {
   // MARK: - Public Properties
 
   var countries = [String]()
-  var score = 0
-  var highestScore = 0
+  var score = 0 {
+    didSet {
+      if score > highestScore {
+        let defaults = UserDefaults.standard
+        defaults.set(score, forKey: "highestScore")
+        defaults.synchronize()
+      }
+    }
+  }
+  var highestScore: Int {
+    let defaults = UserDefaults.standard
+    return defaults.integer(forKey: "highestScore")
+  }
   var correctAnswer = 0
+  var authorizationRequested: Bool {
+    let defaults = UserDefaults.standard
+    return defaults.bool(forKey: "localNotificationAuthorizationRequest")
+  }
+  var notificationsGranted: Bool {
+    let defaults = UserDefaults.standard
+    return defaults.bool(forKey: "notificationsGranted")
+  }
 
   // MARK: - View cycle
 
   override func viewDidLoad() {
     super.viewDidLoad()
+
+    if !authorizationRequested {
+      registerLocal() // to register notifications
+    }
 
     countries += ["estonia", "france", "germany",
                   "ireland", "italy", "monaco",
@@ -41,11 +64,15 @@ class ViewController: UIViewController {
     button2.layer.borderColor = UIColor.lightGray.cgColor
     button3.layer.borderColor = UIColor.lightGray.cgColor
 
-    let defaults = UserDefaults.standard
-    highestScore = defaults.integer(forKey: "highestScore")
-    defaults.synchronize()
-
     askQuestion()
+  }
+
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+
+    if notificationsGranted {
+      scheduleWeekLocalNotifications()
+    }
   }
 
   // MARK: - Actions
@@ -61,18 +88,8 @@ class ViewController: UIViewController {
       score -= 1
     }
 
-    let ac: UIAlertController
-
-    if score > highestScore {
-      highestScore = score
-      let defaults = UserDefaults.standard
-      defaults.set(highestScore, forKey: "highestScore")
-      defaults.synchronize()
-
-      ac = UIAlertController(title: title, message: "You beat the highest score.\nYour score is \(score).", preferredStyle: .alert)
-    } else {
-      ac = UIAlertController(title: title, message: "Your score is \(score).", preferredStyle: .alert)
-    }
+    let message = score > highestScore ? "You beat the highest score.\n" : "" + "Your score is \(score)."
+    let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
     ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
 
@@ -101,6 +118,49 @@ class ViewController: UIViewController {
 
     correctAnswer = Int.random(in: 0...2)
     title = countries[correctAnswer].uppercased()
+  }
+
+  func registerLocal() {
+    let center = UNUserNotificationCenter.current() // the main center to work with notifications
+    // ask for the authorization to send or not local notifications
+    center.requestAuthorization(options: [.alert, .badge, .sound]) { [weak self] (granted, error) in
+      let alert: UIAlertController
+      if granted {
+        alert = UIAlertController(title: "Thanks", message: "We are not trying to bother you, this will just prevent to forget to play!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default))
+        self?.scheduleWeekLocalNotifications()
+      } else {
+        alert = UIAlertController(title: "😞 Oh", message: "We just want to help you to don't forget to play this game, if you change your mind you can activate the notifications through Settings. 👍", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default))
+      }
+
+      // save authorization requested
+      let defaults = UserDefaults.standard
+      defaults.set(true, forKey: "localNotificationAuthorizationRequest")
+      defaults.set(granted, forKey: "notificationsGranted")
+      defaults.synchronize()
+
+      DispatchQueue.main.async {
+        self?.present(alert, animated: true)
+      }
+    }
+  }
+
+  func scheduleWeekLocalNotifications() {
+    let center = UNUserNotificationCenter.current()
+    center.removeAllPendingNotificationRequests()
+
+    let content = UNMutableNotificationContent()
+    content.title = "We miss you! 🎮"
+    content.body = "Come to beat the current highest record! 🥳"
+    content.categoryIdentifier = "alarm"
+    content.sound = UNNotificationSound.default
+
+    for i in 1...7 {
+      let trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(86400 * i), repeats: false)
+      let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+      center.add(request)
+    }
   }
 }
 
